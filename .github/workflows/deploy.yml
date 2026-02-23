@@ -19,6 +19,10 @@ permissions:
   id-token: write
   contents: read
 
+concurrency:
+  group: deploy-${{ github.event.inputs.environment || 'dev' }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Deploy to ${{ github.event.inputs.environment || 'dev' }}
